@@ -36,7 +36,6 @@ NTSTATUS Close(PDEVICE_OBJECT DeviceObject, PIRP irp) {
 
 struct {
     int PID;
-    int Read;
     void * Addr;
     void * Value;
     int Bytes;
