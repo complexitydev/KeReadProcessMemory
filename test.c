@@ -1,7 +1,9 @@
-#
-include < ntifs.h > #include < ntddk.h > #include < ntstrsafe.h > #include < stdlib.h >
+#include < ntifs.h > 
+#include < ntddk.h > 
+#include < ntstrsafe.h > 
+#include < stdlib.h >
 
-    #define IOCTL_DUMP_MEM CTL_CODE(FILE_DEVICE_UNKNOWN, 0x905, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
+#define IOCTL_DUMP_MEM CTL_CODE(FILE_DEVICE_UNKNOWN, 0x905, METHOD_OUT_DIRECT, FILE_ANY_ACCESS)
 
 PDEVICE_OBJECT pDeviceObject;
 UNICODE_STRING dev, dos;
