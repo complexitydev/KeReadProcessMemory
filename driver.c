@@ -55,8 +55,6 @@ NTSTATUS NTAPI MmCopyVirtualMemory
         PSIZE_T ReturnSize
     );
 
-NTKERNELAPI PVOID PsGetProcessSectionBaseAddress(PEPROCESS Process); //kept in if needed for reading
-
 NTSTATUS KeReadProcessMemory(HANDLE PID, PVOID SourceAddress, PVOID TargetAddress, SIZE_T Size) {
     SIZE_T Result;
     PEPROCESS SourceProcess, TargetProcess;
@@ -81,10 +79,8 @@ NTSTATUS IOCTL(PDEVICE_OBJECT DeviceObject, PIRP irp) {
     case IOCTL_DUMP_MEM:
         memcpy( & MemReq, irp - > AssociatedIrp.SystemBuffer, sizeof(MemReq));
         UserBuffer = (PUCHAR) MmGetSystemAddressForMdlSafe(irp - > MdlAddress, NormalPagePriority);
-        if (UserBuffer) {
-            if (MemReq.Addr != NULL) {
+        if (UserBuffer && MemReq.Addr != NULL) {
                 KeReadProcessMemory((HANDLE) MemReq.PID, MemReq.Addr, (PVOID) UserBuffer, MemReq.Bytes);
-            }
         }
         KeFlushIoBuffers(irp - > MdlAddress, TRUE, FALSE);
         irp - > IoStatus.Information = 0;
