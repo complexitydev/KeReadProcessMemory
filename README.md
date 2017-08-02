@@ -1,7 +1,9 @@
 # KeReadProcessMemory
 A lot of people suggest that you implement anti-debugging and memory protection into your application. People even go to the length of using callbacks to deny handle access to the process. All of these techniques are worthless with a bit of kernel code and reversing knowledge.
 
-For example, an anti-virus may attempt to use ObRegisterCallbacks in order to monitor everytime a new process is created, a handle, etc. None of that really matters when in kernel. However, the main drawback to this driver is that is visible in the loaded module list. Perhaps use Turla Driver Loader, which would require a few small tweaks to the driver. Be warned that when using TDL, SEH will no longer function.
+For example, an anti-virus may attempt to use ObRegisterCallbacks in order to monitor everytime a new process is created, a handle, etc. None of that really matters when in kernel. However, the main drawback to this driver is that is visible in the loaded module list, which many anti-viruses now scan as part of their "rootkit" detection. Perhaps use Turla Driver Loader, which would require a few small tweaks to the driver. Be warned that when using TDL, SEH will no longer function.
+
+There is also the posibilty that the anti-virus may attempt a signature/pattern search in kernel memory. Not only is this stupid, but I'd avoid any anti-virus that threatens system stability.
 
 I'll keep working on this project. Eventually, I'll have a C# user-land counterpart to search a process for a pattern. Please note that this method of reading process memory defeats every known anti-cheat, anti-virus, anti-debugging, etc.
 
