@@ -18,22 +18,6 @@ DRIVER_DISPATCH IOCTL;
 DRIVER_DISPATCH Close;
 DRIVER_UNLOAD Unload;
 
-NTSTATUS Create(PDEVICE_OBJECT DeviceObject, PIRP irp) {
-    irp - > IoStatus.Status = STATUS_SUCCESS;
-    irp - > IoStatus.Information = 0;
-
-    IoCompleteRequest(irp, IO_NO_INCREMENT);
-    return STATUS_SUCCESS;
-}
-
-NTSTATUS Close(PDEVICE_OBJECT DeviceObject, PIRP irp) {
-    irp - > IoStatus.Status = STATUS_SUCCESS;
-    irp - > IoStatus.Information = 0;
-
-    IoCompleteRequest(irp, IO_NO_INCREMENT);
-    return STATUS_SUCCESS;
-}
-
 struct {
     int PID;
     void * Addr;
@@ -54,6 +38,7 @@ NTSTATUS NTAPI MmCopyVirtualMemory
     );
 
 NTKERNELAPI PVOID PsGetProcessSectionBaseAddress(PEPROCESS Process); //kept in if needed for reading
+
 NTSTATUS KeReadProcessMemory(HANDLE PID, PVOID SourceAddress, PVOID TargetAddress, SIZE_T Size) {
     SIZE_T Result;
     PEPROCESS SourceProcess, TargetProcess;
