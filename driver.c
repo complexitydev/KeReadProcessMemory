@@ -8,19 +8,18 @@
 PDEVICE_OBJECT pDeviceObject;
 UNICODE_STRING dev, dos;
 
-void Unload(PDRIVER_OBJECT pDriverObject) {
-    IoDeleteSymbolicLink( & dos);
-    IoDeleteDevice(pDriverObject - > DeviceObject);
-}
-
 DRIVER_DISPATCH Create;
 DRIVER_DISPATCH IOCTL;
 DRIVER_DISPATCH Close;
 DRIVER_UNLOAD Unload;
 
+void Unload(PDRIVER_OBJECT pDriverObject) {
+    IoDeleteSymbolicLink( & dos);
+    IoDeleteDevice(pDriverObject - > DeviceObject);
+}
+
 NTSTATUS Create(PDEVICE_OBJECT DeviceObject,PIRP irp)
 {
-
 	irp->IoStatus.Status=STATUS_SUCCESS;
 	irp->IoStatus.Information=0;
 
@@ -30,7 +29,6 @@ NTSTATUS Create(PDEVICE_OBJECT DeviceObject,PIRP irp)
 
 NTSTATUS Close(PDEVICE_OBJECT DeviceObject,PIRP irp)
 {
-
 	irp->IoStatus.Status=STATUS_SUCCESS;
 	irp->IoStatus.Information=0;
 
