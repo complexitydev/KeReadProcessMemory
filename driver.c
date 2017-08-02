@@ -110,7 +110,6 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObject, PUNICODE_STRING pRegistryPath
 
     pDriverObject - > MajorFunction[IRP_MJ_CREATE] = Create;
     pDriverObject - > MajorFunction[IRP_MJ_DEVICE_CONTROL] = IOCTL;
-
     pDriverObject - > MajorFunction[IRP_MJ_CLOSE] = Close;
 
     pDriverObject - > DriverUnload = Unload;
