@@ -61,7 +61,7 @@ NTSTATUS KeReadProcessMemory(HANDLE PID, PVOID SourceAddress, PVOID TargetAddres
     PsLookupProcessByProcessId(PID, & SourceProcess);
     TargetProcess = PsGetCurrentProcess();
     __try {
-        ProbeForRead(SourceAddress, Size, 1);
+        //ProbeForRead(SourceAddress, Size, 1);
         MmCopyVirtualMemory(SourceProcess, SourceAddress, TargetProcess, TargetAddress, Size, KernelMode, & Result);
         return STATUS_SUCCESS;
     }
