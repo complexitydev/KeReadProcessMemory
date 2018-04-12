@@ -5,7 +5,7 @@ For example, an anti-virus may attempt to use ObRegisterCallbacks in order to mo
 
 There is also the posibilty that the anti-virus may attempt a signature/pattern search in kernel memory. Not only is this stupid, but I'd avoid any anti-virus that threatens system stability.
 
-I'll keep working on this project. Eventually, I'll have a C# user-land counterpart to search a process for a pattern, which was the main point of it all. There is nothing you can do to prevent analysis on your program if someone is dedicated enough. Please note that this method of reading process memory defeats every known anti-cheat, anti-virus, anti-debugging, etc.
+I'll keep working on this project. Eventually, I'll have a C# user-land counterpart to search a process for a pattern, which was the main point of it all. There is nothing you can do to prevent analysis on your program if someone is dedicated enough.
 
 I thought I'd do a bit of a disclaimer: this driver is not created with the intention of doing anything malicious. The sole purpose of it is to bypass any anti-debugging/memory protection techniques that harmful processes such as malware employ.
 
