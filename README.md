@@ -10,10 +10,10 @@ I'll keep working on this project. Eventually, I'll have a C# user-land counterp
 I thought I'd do a bit of a disclaimer: this driver is not created with the intention of doing anything malicious. The sole purpose of it is to bypass any anti-debugging/memory protection techniques that harmful processes such as malware employ.
 
 # How to Use
-Create a user-land app that implements DeviceIOControl. Use VirtualMemorySize64 or some variant to find the size and then make the IOCTL call. Or use this to read a specific address, it really doesn't matter. 
+Create a user-land app that implements DeviceIOControl, then send the IOCTL request.
 
 # Writing Memory
-If you swap source and target, you can instead write to that area in memory. MmCopyVirtualMemory states "copies bytes from one address to another". Instead of writing to the current buffer, instead just write to another program's memory space. This will be useful when wanting to inject shellcode. Simply reverse until you find a function that is called frequently. Or even with a bit of work, inject a module into that process. MmCopyVirtualMemory is extremely versatile & quite honestly performs better than the alternatives.
+If you swap source and target, you can instead write to that area in memory. MmCopyVirtualMemory states "copies bytes from one address to another". Instead of writing to the current buffer, instead just write to another program's memory space. This will be useful when wanting to inject shellcode. Simply reverse until you find a function that is called frequently. Or even with a bit of work, inject a module into that process.
 
 # Blue-Screens
 I have extensively tested this driver and added SEH where needed. When implementing a writing function, use ProbeForWrite Feel free to create a Github issue if one occurs. The only possible blue-screen is the user-land buffer (a pointer) being passed incorrectly.
